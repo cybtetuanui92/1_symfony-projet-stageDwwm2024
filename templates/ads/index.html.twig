@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page PROFIL{% endblock %}
+
+{% block body %}
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Mon DashTROC</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Acceuil
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Profil</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        {# Boucle pour afficher tous les messages flash #}
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }} mt-4">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="{{ asset('assets/img/avatar.png')}}" class="card-img-top" alt="Photo de profil">
+                    <div class="card-body">
+                        <h5 class="card-title">Nom de l'utilisateur</h5>
+                        <p class="card-text">Informations personnelles</p>
+                        <a href="#" class="btn btn-primary">Modifier Profil</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        Gestion des annonces
+                    </div>
+                    {% for ad in ads %}
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item ">
+                                <div class="d-flex align-items-center">
+                                    <img src="{{ ad.imageUrl }}" class="card-img-top" alt="Photo de profil" style="width: 15%; height: auto;">
+                                    <h2>{{ ad.title }}</h2>
+                                </div>
+                                <p>{{ ad.description }}</p>
+                                <a class="btn btn-sm btn-dark" href="{{ path('app_ads_show', {'id': ad.id}) }}">Détails de l'annonce</a>
+                                <a class="btn btn-sm btn-primary float-right" href="{{ path('app_ads_edit', {'id': ad.id}) }}">Modifier l'annonce</a>
+                            </li>
+                        </ul>
+                    {% else %}
+                        <tr>
+                            <td colspan="5">Il n'y a pas d'annonce encore, veuillez-en ajouter !</td>
+                        </tr>
+                    {% endfor %}
+                    <div class="card-body">
+                        <a class="btn btn-sm btn-success" href="{{ path('app_ads_new') }}">Ajouter une annonce</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

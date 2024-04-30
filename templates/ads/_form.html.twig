@@ -1,0 +1,21 @@
+{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+    {% for field in form %}
+        <div class="form-group row">
+            {% if field.vars.name != '_token' %}
+                {{ form_label(field, null, {'label_attr': {'class': 'col-sm-2 col-form-label'}}) }}
+            {% endif %}
+            <div class="col-sm-10">
+                {{ form_widget(field, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(field) }}
+            </div>
+        </div>
+    {% endfor %}
+
+    <div class="form-group row">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary">Soumettre</button>
+        </div>
+    </div>
+
+{{ form_end(form) }}
