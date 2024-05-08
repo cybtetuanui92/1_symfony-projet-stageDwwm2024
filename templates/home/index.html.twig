@@ -225,23 +225,25 @@
 										{% if counter % 4 == 0 %}
 											{# ! COMPTEUR = 0, ALORS le groupe est classé 'active' donc affiché au slider #}
 											<div class="item{% if counter == 0 %} active{% endif %}">
-												<ul class="thumbnails">
+									<ul class="thumbnails">
 										{% endif %}
 													<li class="span3">
 														<div class="thumbnail">
-															<a href="{{ path('app_home', {'id': card.id}) }}"><img src="{{ card.imageUrl }}" alt="image alternative de troc"></a>
-															<div class="caption">
+															<a href="{{ path('app_home', {'id': card.id}) }}"><img src="{{ card.imageUrl }}" alt="image alternative de troc"/></a>
+															<div class="caption" style="">
 																<h5>{{ card.title }}</h5>
 																<p>#</p>
-																<h4><a class="btn btnVoir" href="{{ path('app_home', {'id': card.id}) }}">CONSULTER</a></h4>
 															</div>
+															<h4 style="text-align:center">
+															<a class="btn btn-sm" style="" href="{{ path('app_home', {'id': card.id}) }}">CONSULTER</a>
+															</h4>
 														</div>
 													</li>
 										{# * on incrémente le compteur afin de poursuivre le traitement de toute BDD #}
 										{% set counter = counter + 1 %}
 										{# ! condition de fermeture des div 'item' ou 'item active' #}
 										{% if counter % 4 == 0 or counter == totalCards %}
-												</ul>
+									</ul>
 											</div> <!-- Ferme item -->
 										{% endif %}
 									{% endfor %}
