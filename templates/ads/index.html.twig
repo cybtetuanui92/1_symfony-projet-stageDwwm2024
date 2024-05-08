@@ -5,7 +5,7 @@
 {% block body %}
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Mon DashTROC</a>
+        <a class="navbar-brand mx-3" href="#">Mon DashTROC</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -26,7 +26,7 @@
         {# Boucle pour afficher tous les messages flash #}
         {% for label, messages in app.flashes %}
             {% for message in messages %}
-                <div class="alert alert-{{ label }} mt-4">
+                <div class="alert alert-{{ label }} mt-2">
                     {{ message }}
                 </div>
             {% endfor %}
@@ -39,8 +39,9 @@
                 <div class="card">
                     <img src="{{ asset('assets/img/avatar.png')}}" class="card-img-top" alt="Photo de profil">
                     <div class="card-body">
-                        <h5 class="card-title">Nom de l'utilisateur</h5>
-                        <p class="card-text">Informations personnelles</p>
+                        <h1 class="card-title"> {{users.username}} </h1>
+                        <h5> {{users.email}} </h5>
+                        <p class="card-text">Informations personnelles : <br>Localisation  {{users.id}} </p>
                         <a href="#" class="btn btn-primary">Modifier Profil</a>
                     </div>
                 </div>
@@ -54,10 +55,11 @@
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item ">
                                 <div class="d-flex align-items-center">
-                                    <img src="{{ ad.imageUrl }}" class="card-img-top" alt="Photo de profil" style="width: 15%; height: auto;">
-                                    <h2>{{ ad.title }}</h2>
+                                    <img src="{{ ad.imageUrl }}" class="card-img-top mb-3" alt="Photo de profil" style="width: 15%; height: auto;">
+                                    <h2 class="mx-3">{{ ad.title }}</h2>
                                 </div>
                                 <p>{{ ad.description }}</p>
+                                <h5>City :</h5>
                                 <a class="btn btn-sm btn-dark" href="{{ path('app_ads_show', {'id': ad.id}) }}">Détails de l'annonce</a>
                                 <a class="btn btn-sm btn-primary float-right" href="{{ path('app_ads_edit', {'id': ad.id}) }}">Modifier l'annonce</a>
                             </li>

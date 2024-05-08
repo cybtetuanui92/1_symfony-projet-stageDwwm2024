@@ -1,0 +1,54 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Connexion |Smile Factory Troc
+{% endblock %}
+
+{% block body %}
+	{% if error %}
+		<div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+	{% endif %}
+	<div class="container">
+		<form action="{{ path('app_login') }}" method="post">
+			<label for="username">Email:</label>
+			<input type="text" id="username" name="_username" value="{{ last_username }}">
+
+			<label for="password">Mot de passe:</label>
+			<input type="password" id="password" name="_password">
+
+			<input type="hidden" name="_target_path" value="{{path('app_ads_index')}}">
+
+			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+			<button type="submit">Connecter</button>
+		</form>
+	</div>
+
+	{# <div class="span4">
+		<div class="well">
+			<h5>DÉJÀ ENREGISTRÉ ?</h5>
+			<form action="{{ path('app_login') }}" method="post">
+				<div class="control-group">
+					<label class="control-label" for="username">Email:</label>
+					<div class="controls">
+						<input class="span3" type="text" id="username" name="_username" value="{{ last_username }}>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="password">Mot de passe</label>
+					<div class="controls">
+						<input class="span3" type="password" id="password" name="_password">
+					</div>
+				</div>
+				<input type="hidden" name="_target_path" value="{{path('app_ads_index')}}">
+				<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+				<div class="control-group">
+					<div class="controls">
+						<button type="submit" class="btn">Connecter</button>
+						<a href="#">Mot de passe oublié?</a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div> #}
+
+{% endblock %}

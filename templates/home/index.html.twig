@@ -1,0 +1,322 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Acceuil |Smile Factory Troc
+{% endblock %}
+
+{% block body %}
+
+<!-- Navbar ================================================== -->
+<div class="container">
+	<div id="logoArea" class=" navbar navbar-expand-lg ">
+	{# Le menu burger n'est pas responsive!!!!!!!!!!!!! #}
+		<a id="smallScreen" data-target="#topMenu" data-toggle="collapse" class="btn btn-navbar">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</a>
+		<div class="navbar-inner container-fluid">
+			<a  href="{{path('app_home')}}"><img style="max-width: 150px; height: auto;" src="{{asset('assets/img/logoT.png')}}" alt="Logo SFT"/></a>
+			<form class="form-inline navbar-search" method="post" action="#">
+				<input id="srchFld" class="srchTxt" type="text"/>
+				<select class="srchTxt">
+					<option>Catégories</option>
+					<option>TEXTILES
+					</option>
+					<option>ALIMENTATION ET BOISSON
+					</option>
+					<option>SERVICES
+					</option>
+				</select>
+				<button type="submit" id="submitButton" class="btn btn-primary">Consulter</button>
+			</form>
+			<ul id="topMenu" class="nav pull-right">
+				<li class="">
+					<a href="#">Présentation</a>
+				</li>
+				<li class="">
+					<a href="#">Contact</a>
+				</li>
+				<li class="">
+					<a href="{{path('app_login')}}" role="button" style="padding-right:0">
+						<span class="btn btn-large btn-success">Login</span>
+					</a>
+					<div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							<h3>Block de connexion</h3>
+						</div>
+						<div class="modal-body">
+							<form class="form-horizontal loginFrm">
+								<div class="control-group">
+									<input type="text" id="inputEmail" placeholder="Email">
+								</div>
+								<div class="control-group">
+									<input type="password" id="inputPassword" placeholder="Password">
+								</div>
+								<div class="control-group">
+									<label class="checkbox">
+										<input type="checkbox">
+										Souvenir de moi
+									</label>
+								</div>
+							</form>
+							<button type="submit" class="btn btn-success">Entrer</button>
+							<button class="btn" data-dismiss="modal" aria-hidden="true">Fermer</button>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!-- Header End====================================================================== -->
+
+	{# PARTIE CAROUSEL #}
+	<div id="carouselBlk">
+		<div id="myCarousel" class="carousel slide">
+			<div class="carousel-inner">
+				<div class="item active">
+					<div class="container">
+						<a href="register.html"><img style="width:60%" src="{{asset('assets/img/carTroc4.jpg')}}" alt="présentation site TROC"/></a>
+						<div class="carousel-caption">
+							<h4>Second Thumbnail label</h4>
+							<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<div class="container">
+						<a href="register.html"><img style="width:40%" src="{{asset('assets/img/carTroc4.jpg')}}" alt="présentation site TROC"/></a>
+						<div class="carousel-caption">
+							<h4>Second Thumbnail label</h4>
+							<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<div class="container">
+						<a href="register.html"><img style="width:40%" src="{{asset('assets/img/carTroc4.jpg')}}" alt="présentation site TROC"/></a>
+						<div class="carousel-caption">
+							<h4>Second Thumbnail label</h4>
+							<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+						</div>
+
+					</div>
+				</div>
+				<div class="item">
+					<div class="container">
+						<a href="register.html"><img style="width:40%" src="{{asset('assets/img/carTroc4.jpg')}}" alt="présentation site TROC"/></a>
+						<div class="carousel-caption">
+							<h4>Second Thumbnail label</h4>
+							<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+			<a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+		</div>
+	</div>
+
+	<div id="mainBody">
+		<div class="container">
+			<div class="row">
+				{# ! Side bar à lier sur les liens de redirection #}
+				<!-- Sidebar ================================================== -->
+				<div id="sidebar" class="span3">
+					<ul id="sideManu" class="nav nav-tabs nav-stacked">
+						{# ! Sous Menu SERVICES #}
+						<li class="subMenu open">
+							<a>
+								SERVICES ET BIENS [32]</a>
+							<ul>
+								<li><a class="active" href="#"><i class="icon-chevron-right"></i>Aides à la Personne (100)</a></li>
+								<li><a href="#"><i class="icon-chevron-right"></i>Annonces diverses (30)</a></li>
+								<li><a href="#"><i class="icon-chevron-right"></i>Livres & Administratifs (80)</a></li>
+							</ul>
+						</li>
+						{# ! Sous Menu TEXTILES #}
+						<li class="subMenu">
+							<a>
+								TEXTILES [180]
+							</a>
+							<ul style="display:none">
+								<li>
+									<a href="#">
+										<i class="icon-chevron-right"></i>VÊTEMENTS FEMMES (45)</a>
+								</li>
+								<li>
+									<a href="#">
+										<i class="icon-chevron-right"></i>CHAUSSURES FEMMES (8)</a>
+								</li>
+								<li>
+									<a href="#">
+										<i class="icon-chevron-right"></i>ACCESSOIRES FEMMES (5)</a>
+								</li>
+								<li>
+									<a href="#">
+										<i class="icon-chevron-right"></i>VÊTEMENTS HOMMES  (45)</a>
+								</li>
+								<li>
+									<a href="#">
+										<i class="icon-chevron-right"></i>CHAUSSURES HOMMES (6)</a>
+								</li>
+								<li>
+									<a href="#">
+										<i class="icon-chevron-right"></i>VÊTEMENT ENFANTS (5)</a>
+								</li>
+								<li>
+									<a href="#">
+										<i class="icon-chevron-right"></i>CHAUSSURES ENFANTS (3)</a>
+								</li>
+							</ul>
+						</li>
+						{# ! Sous Menu ALIMENTATION #}
+						<li class="subMenu">
+							<a>ALIMENTATION ET BOISSONS [35]</a>
+							<ul style="display:none">
+								<li>
+									<a href="#">
+										<i class="icon-chevron-right"></i>Eau Bouteille Pack (15)</a>
+								</li>
+								<li>
+									<a href="#">
+										<i class="icon-chevron-right"></i>Fruits(8)</a>
+								</li>
+								<li>
+									<a href="#">
+										<i class="icon-chevron-right"></i>Légumes (5)</a>
+								</li>
+								<li>
+									<a href="#">
+										<i class="icon-chevron-right"></i>Riz thaï (2)</a>
+								</li>
+								<li>
+									<a href="#">
+										<i class="icon-chevron-right"></i>BIB Wine (Bag in Box) (5)</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+					<br/>
+				</div>
+				<!-- Sidebar end=============================================== -->
+				
+				{# ! Span relié à la BDD, Hydratation OK des 2  #}
+				<!-- Span start ================================================== -->
+				<div class="span9">
+					<div class="well well-small">
+						<h4>Nouveau "TROC" ajouté
+							<small class="pull-right">Les 16 nouveaux trocs</small>
+						</h4>
+						<div class="row-fluid">
+							<div id="featured" class="carousel slide">
+								<div class="carousel-inner">
+								{# ! Pour gérer le caroussel span inner, on prépare une présentation par groupe de 4 cards #}
+									{# * Déclaration Total des cartes en BDD avec le filtre TWIG 'length' pour compter les éléments du tableau cards #}
+									{% set totalCards = cards|length %}
+									{# * Compteur à 0 pour suivre le nombre de cartes traitées dans la boucle #}
+									{% set counter = 0 %}
+									{# * Boucle FOR pour traiter une carte une par une, présentes dans le tableau cards. #}
+									{% for card in cards %}
+										{# ! condition vrai quand le compteur modulo 4 est NUL #}
+										{# * Signifie que tous les 4 cartes, on regroupe les prochaines si existantes #}
+										{% if counter % 4 == 0 %}
+											{# ! COMPTEUR = 0, ALORS le groupe est classé 'active' donc affiché au slider #}
+											<div class="item{% if counter == 0 %} active{% endif %}">
+												<ul class="thumbnails">
+										{% endif %}
+													<li class="span3">
+														<div class="thumbnail">
+															<a href="{{ path('app_home', {'id': card.id}) }}"><img src="{{ card.imageUrl }}" alt="image alternative de troc"></a>
+															<div class="caption">
+																<h5>{{ card.title }}</h5>
+																<p>#</p>
+																<h4><a class="btn btnVoir" href="{{ path('app_home', {'id': card.id}) }}">CONSULTER</a></h4>
+															</div>
+														</div>
+													</li>
+										{# * on incrémente le compteur afin de poursuivre le traitement de toute BDD #}
+										{% set counter = counter + 1 %}
+										{# ! condition de fermeture des div 'item' ou 'item active' #}
+										{% if counter % 4 == 0 or counter == totalCards %}
+												</ul>
+											</div> <!-- Ferme item -->
+										{% endif %}
+									{% endfor %}
+								</div>
+								<a class="left carousel-control" href="#featured" data-slide="prev">‹</a>
+								<a class="right carousel-control" href="#featured" data-slide="next">›</a>
+							</div>
+						</div>
+					</div>
+					<h4>Services et biens échangés
+					</h4>
+					<ul class="thumbnails">
+
+						{% for card in cards %}
+							<li class="span3">
+								<div class="thumbnail">
+									<a href="{{path('app_home', {'id': card.id})}}"><img src="{{card.imageUrl}}" alt="image d'article de TROC"/></a>
+									<div class="caption">
+										<h5>{{card.title}}</h5>
+										<p>
+										#
+										</p>
+										<p>
+											#
+										</p>
+										<h4 style="text-align:center">
+											<a class="btn" href="{{path('app_home', {'id': card.id})}}">
+												<i class="icon-zoom-in"></i>
+											</a>
+											<a class="btn" href="#">TROQU'YEAH
+												<i class="icon-shopping-cart"></i>
+											</a>
+										</h4>
+									</div>
+								</div>
+							</li>
+						{% endfor %}
+
+					</ul>
+				</div>
+				<!-- Span end ================================================== -->
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer ================================================================== -->
+<div id="footerSection">
+	<div class="container">
+		<div class="row">
+			<div class="span3">
+				<h5>SESSION</h5>
+				<a href="login.html">MON COMPTE</a>
+				<a href="login.html">INFORMATIONS PERSONNELLES</a>
+				<a href="login.html">HISTORIQUE</a>
+			</div>
+			<div class="span3">
+				<h5>INFORMATION</h5>
+				<a href="contact.html">CONTACT</a>
+				<a href="register.html">INSCRIPTION</a>
+				<a href="legal_notice.html">NOTICE</a>
+				<a href="tac.html">CONDITIONS ET TERMES</a>
+				<a href="faq.html">FAQ</a>
+			</div>
+			<div id="socialMedia" class="span3">
+				<h5>RÉSEAUX
+				</h5>
+				<a href="#"><img width="60" height="60" src="{{asset('themes/images/facebook.png')}}" title="facebook" alt="facebook"/></a>
+				<a href="#"><img width="60" height="60" src="{{asset('themes/images/twitter.png')}}" title="twitter" alt="twitter"/></a>
+				<a href="#"><img width="60" height="60" src="{{asset('themes/images/youtube.png')}}" title="youtube" alt="youtube"/></a>
+			</div>
+		</div>
+		<p class="pull-right">&copy; Troc'Yah</p>
+	</div>
+	<!-- Container End -->
+</div>
+
+
+{% endblock %}

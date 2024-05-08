@@ -5,34 +5,38 @@ namespace App\Controller;
 use App\Entity\Ads;
 use App\Form\AdsType;
 use App\Repository\AdsRepository;
+use App\Repository\UsersRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/troc')]
 class AdsController extends AbstractController
 {
-    // // ! ICI la page PROFIL
-    // #[Route('/dash', name: 'app_dash')]
-    // public function index(): Response
-    // {
-    //     return $this->render('dash/index.html.twig', [
-    //         'controller_name' => 'DashController',
-    //     ]);
-    // }
 
     // ! ICI la page PROFIL
     #[Route('/', name: 'app_ads_index', methods: ['GET'])]
-    public function home(AdsRepository $adsRepository): Response
-    {
+    public function home(AdsRepository $adsRepository, UsersRepository $usersRep, EntityManagerInterface $entityManager): Response
+    {   
+        // Obtenir l'utilisateur connecté
+        $user = $this->getUser();
+
+        // Récupérer les annonces créées par l'utilisateur
+        // $ads = $entityManager->getRepository(Ads::class)->findBy(['username' => $user]);
+
         return $this->render('ads/index.html.twig', [
             'ads' => $adsRepository->findAll(),
+            'users' => $user,
         ]);
     }
 
     // ! Logique du CREATE
+    /**
+     * @IsGranted("ROLE_USER")
+     */
     #[Route('/new', name: 'app_ads_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -41,6 +45,8 @@ class AdsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Associer l'utilisateur à l'annonce et assigne l'utilisateur connecté comme auteur de l'annonce
+            $ad->setUser($this->getUser());
             $entityManager->persist($ad);
             $entityManager->flush();
 
@@ -86,10 +92,10 @@ class AdsController extends AbstractController
     }
 
     // ! ICI logique du DELETE
-    #[Route('/{id}', name: 'app_ads_delete', methods: ['POST'])]
+    #[Route('/{id}/delete', name: 'app_ads_delete', methods: ['POST'])]
     public function delete(Request $request, Ads $ad, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$ad->getId(), $request->getPayload()->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$ad->getId(), $request->request->get('_token'))) {
             $entityManager->remove($ad);
             $entityManager->flush();
 
