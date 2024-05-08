@@ -12,14 +12,21 @@ class LoginController extends AbstractController
     #[Route('/login', name: 'app_login')]
     public function index(AuthenticationUtils $authenticationUtils): Response
     {
-        // get the login error if there is one
-       $error = $authenticationUtils->getLastAuthenticationError();
+        // récup des erreurs de Log si existant
+        $error = $authenticationUtils->getLastAuthenticationError();
 
-       // last username entered by the user
+        // dernier user entré
         $lastUsername = $authenticationUtils->getLastUsername();
+
         return $this->render('login/index.html.twig', [
             'last_username' => $lastUsername,
             'error'         => $error,
         ]);
+    }
+
+    #[Route('/logout', name: 'app_logout', methods: ['GET'])]
+    public function logout(): void
+    {
+        throw new \LogicException('Cette méthode peut être vide - elle est interceptée par le firewall.');
     }
 }

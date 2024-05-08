@@ -26,6 +26,12 @@ security:
 
             logout:
                 path: /logout
+                target: app_login
+
+            remember_me:
+                secret: '%env(APP_SECRET)%'
+                lifetime: 604800 # 1 semaine
+                path: /
 
                 # where to redirect after logout
                 # target: app_any_route
@@ -40,7 +46,7 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/troc, roles: ROLE_USER }
 
 when@test:
     security:

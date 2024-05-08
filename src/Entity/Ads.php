@@ -23,7 +23,7 @@ class Ads
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\ManyToOne(inversedBy: 'ad')]
+    #[ORM\ManyToOne(inversedBy: 'Ad')]
     private ?Users $user = null;
 
     public function getId(): ?int

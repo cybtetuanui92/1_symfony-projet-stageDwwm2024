@@ -38,18 +38,18 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $username = null;
 
-    /**
-     * @var Collection<int, Ads>
-     */
-    #[ORM\OneToMany(targetEntity: Ads::class, mappedBy: 'users')]
-    private Collection $ad;
-
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
+    /**
+     * @var Collection<int, Ads>
+     */
+    #[ORM\OneToMany(targetEntity: Ads::class, mappedBy: 'user')]
+    private Collection $Ad;
+
     public function __construct()
     {
-        $this->ad = new ArrayCollection();
+        $this->Ad = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -86,11 +86,12 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getRoles(): array
     {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+         // Par défaut, ajoute `ROLE_USER` si aucun rôle spécifique n'est défini
+         if (empty($this->roles)) {
+            $this->roles = ['ROLE_USER'];
+        }
 
-        return array_unique($roles);
+        return array_unique($this->roles);
     }
 
     /**
@@ -139,36 +140,6 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Ads>
-     */
-    public function getAd(): Collection
-    {
-        return $this->ad;
-    }
-
-    public function addAd(Ads $ad): static
-    {
-        if (!$this->ad->contains($ad)) {
-            $this->ad->add($ad);
-            $ad->setUsers($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAd(Ads $ad): static
-    {
-        if ($this->ad->removeElement($ad)) {
-            // set the owning side to null (unless already changed)
-            if ($ad->getUsers() === $this) {
-                $ad->setUsers(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function isVerified(): bool
     {
         return $this->isVerified;
@@ -177,6 +148,36 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     public function setVerified(bool $isVerified): static
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Ads>
+     */
+    public function getAd(): Collection
+    {
+        return $this->Ad;
+    }
+
+    public function addAd(Ads $ad): static
+    {
+        if (!$this->Ad->contains($ad)) {
+            $this->Ad->add($ad);
+            $ad->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAd(Ads $ad): static
+    {
+        if ($this->Ad->removeElement($ad)) {
+            // set the owning side to null (unless already changed)
+            if ($ad->getUser() === $this) {
+                $ad->setUser(null);
+            }
+        }
 
         return $this;
     }

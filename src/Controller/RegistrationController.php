@@ -22,6 +22,7 @@ class RegistrationController extends AbstractController
     // {
     // }
 
+    // ! Logique INSCRIPTION
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
@@ -38,15 +39,23 @@ class RegistrationController extends AbstractController
                 )
             );
 
+            // Assigner les rôles par défaut (par exemple 'ROLE_USER')
+            if (empty($user->getRoles())) {
+                $user->setRoles(['ROLE_USER']);
+            }
+
+            // Définit le statut `isVerified` par défaut (non vérifié)
+            $user->setVerified(false);
+
             $entityManager->persist($user);
             $entityManager->flush();
 
             // generate a signed url and email it to the user
             // $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
             //     (new TemplatedEmail())
-            //         ->from(new Address('cyassinechabab@gmail.com', 'trocyah'))
+            //         ->from(new Address('mateau.tetuanui@gmail.com', 'TROC\'YAH'))
             //         ->to($user->getEmail())
-            //         ->subject('Please Confirm your Email')
+            //         ->subject('Confirmez votre email s\'il vous plaît !')
             //         ->htmlTemplate('registration/confirmation_email.html.twig')
             // );
 
@@ -60,6 +69,7 @@ class RegistrationController extends AbstractController
         ]);
     }
 
+    // ! Logique VÉRIFICATION EMAIL : UTILISATEUR
     // #[Route('/verify/email', name: 'app_verify_email')]
     // public function verifyUserEmail(Request $request, TranslatorInterface $translator): Response
     // {
@@ -75,7 +85,7 @@ class RegistrationController extends AbstractController
     //     }
 
     //     // @TODO Change the redirect on success and handle or remove the flash message in your templates
-    //     $this->addFlash('success', 'Your email address has been verified.');
+    //     $this->addFlash('success', 'Votre email a été vérifié avec succès.');
 
     //     return $this->redirectToRoute('app_register');
     // }
