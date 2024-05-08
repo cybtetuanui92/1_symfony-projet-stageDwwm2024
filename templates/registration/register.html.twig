@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion | Inscription | Troc'Yah{% endblock %}
+
+{% block body %}
+<div id="mainBody">
+    <div class="container">
+        <div class="row">
+            <div class="span9">
+                <ul class="breadcrumb">
+                    <li><a href="#">Acceuil</a><span class="divider">/</span></li>
+                    <li class="active">Connexion - Inscription</li>
+                </ul>
+                <h3>Se connecter / S'inscrire</h3>
+                <hr class="soft"/>
+
+                <div class="row">
+                    <!-- Section Formulaire INSCRIPTION -->
+                    <div class="span4">
+                        <div class="well">
+                            <h5>CRÉER SON COMPTE</h5>
+                            {{ form_start(registrationForm, {'attr': {'class': 'form-horizontal'}}) }}
+                            {{ form_row(registrationForm.username, {'label': 'Nom d\'utilisateur'}) }}
+                            {{ form_row(registrationForm.email, {'label': 'Adresse email'}) }}
+                            {{ form_row(registrationForm.plainPassword, {'label': 'Mot de passe'}) }}
+                            {{ form_row(registrationForm.agreeTerms, {'label': 'J\'accepte les termes et conditions'}) }}
+                            <div class="controls">
+                                <button type="submit" class="btn block">Créer</button>
+                            </div>
+                            {{ form_end(registrationForm) }}
+                        </div>
+                    </div>
+                    <div class="span1">
+                        &nbsp;
+                    </div>
+                    <!-- Section formulaire CONNEXION -->
+                    {# <div class="span4">
+                        <div class="well">
+                            <h5>DÉJÀ ENREGISTRÉ ?</h5>
+                            {{ form_start(loginForm, {'attr': {'class': 'form-horizontal'}}) }}
+                            {{ form_row(loginForm.email, {'label': 'Email'}) }}
+                            {{ form_row(loginForm.password, {'label': 'Mot de passe'}) }}
+                            <div class="controls">
+                                <button type="submit" class="btn">Connecter</button>
+                                <a href="{{ path('app_forgot_password') }}">Mot de passe oublié?</a>
+                            </div>
+                            {{ form_end(loginForm) }}
+                        </div>
+                    </div> #}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
