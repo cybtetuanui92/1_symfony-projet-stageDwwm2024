@@ -6,16 +6,18 @@
 {% block body %}
 
 <!-- Navbar ================================================== -->
-<div class="container">
-	<div id="logoArea" class=" navbar navbar-expand-lg ">
-	{# Le menu burger n'est pas responsive!!!!!!!!!!!!! #}
+{# <div class="container"> #}
+	<div id="logoArea" class="navbar navbar-expand-lg navbar-light bg-light ">
+		{# Le menu burger n'est pas responsive!!!!!!!!!!!!! #}
 		<a id="smallScreen" data-target="#topMenu" data-toggle="collapse" class="btn btn-navbar">
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</a>
-		<div class="navbar-inner container-fluid">
-			<a  href="{{path('app_home')}}"><img style="max-width: 150px; height: auto;" src="{{asset('assets/img/logoT.png')}}" alt="Logo SFT"/></a>
+		<div class="navbar-inner">
+			<a class="brand" href="{{path('app_home')}}">
+				<img style="max-width: 150px;" src="{{asset('assets/img/logoT.png')}}" alt="Logo SFT"/>
+			</a>
 			<form class="form-inline navbar-search" method="post" action="#">
 				<input id="srchFld" class="srchTxt" type="text"/>
 				<select class="srchTxt">
@@ -38,7 +40,7 @@
 				</li>
 				<li class="">
 					<a href="{{path('app_login')}}" role="button" style="padding-right:0">
-						<span class="btn btn-large btn-success">Login</span>
+						<span class="btn btn-large btn-success">Connexion</span>
 					</a>
 					<div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false">
 						<div class="modal-header">
@@ -68,7 +70,7 @@
 			</ul>
 		</div>
 	</div>
-</div>
+{# </div> #}
 <!-- Header End====================================================================== -->
 
 	{# PARTIE CAROUSEL #}
@@ -288,35 +290,36 @@
 	</div>
 
 	<!-- Footer ================================================================== -->
-<div id="footerSection">
-	<div class="container">
-		<div class="row">
-			<div class="span3">
-				<h5>SESSION</h5>
-				<a href="login.html">MON COMPTE</a>
-				<a href="login.html">INFORMATIONS PERSONNELLES</a>
-				<a href="login.html">HISTORIQUE</a>
-			</div>
-			<div class="span3">
-				<h5>INFORMATION</h5>
-				<a href="contact.html">CONTACT</a>
-				<a href="register.html">INSCRIPTION</a>
-				<a href="legal_notice.html">NOTICE</a>
-				<a href="tac.html">CONDITIONS ET TERMES</a>
-				<a href="faq.html">FAQ</a>
-			</div>
-			<div id="socialMedia" class="span3">
-				<h5>RÉSEAUX
-				</h5>
-				<a href="#"><img width="60" height="60" src="{{asset('themes/images/facebook.png')}}" title="facebook" alt="facebook"/></a>
-				<a href="#"><img width="60" height="60" src="{{asset('themes/images/twitter.png')}}" title="twitter" alt="twitter"/></a>
-				<a href="#"><img width="60" height="60" src="{{asset('themes/images/youtube.png')}}" title="youtube" alt="youtube"/></a>
-			</div>
-		</div>
-		<p class="pull-right">&copy; Troc'Yah</p>
-	</div>
-	<!-- Container End -->
-</div>
-
+<div class="p-3 mb-2 bg-dark">
+        <div id="footerSection">
+            <div class="container">
+                <div class="row">
+                    <div class="span3">
+                        <h5>SESSION</h5>
+                        <a href="login.html">MON COMPTE</a>
+                        <a href="login.html">INFORMATIONS PERSONNELLES</a>
+                        <a href="login.html">HISTORIQUE</a>
+                    </div>
+                    <div class="span3">
+                        <h5>INFORMATION</h5>
+                        <a href="contact.html">CONTACT</a>
+                        <a href="register.html">INSCRIPTION</a>
+                        <a href="legal_notice.html">NOTICE</a>
+                        <a href="tac.html">CONDITIONS ET TERMES</a>
+                        <a href="faq.html">FAQ</a>
+                    </div>
+                    <div id="socialMedia" class="span3">
+                        <h5>RÉSEAUX
+                        </h5>
+                        <a href="#"><img width="60" height="60" src="{{asset('themes/images/facebook.png')}}" title="facebook" alt="facebook"/></a>
+                        <a href="#"><img width="60" height="60" src="{{asset('themes/images/twitter.png')}}" title="twitter" alt="twitter"/></a>
+                        <a href="#"><img width="60" height="60" src="{{asset('themes/images/youtube.png')}}" title="youtube" alt="youtube"/></a>
+                    </div>
+                </div>
+                <p class="pull-right">&copy; Troc'Yah</p>
+            </div>
+        </div>
+        <!-- Container End -->
+    </div> 
 
 {% endblock %}

@@ -96,6 +96,7 @@
 #topMenu{height: auto;float: none;}
 #topMenu li{float: none;}
 .navbar .nav > li > a {border-top:1px solid #666; padding:0}
+/* .body{ padding-right: 0px; padding-left: 0px;} */
  }
 /* Landscape phones and down */
 @media (max-width: 480px) {
